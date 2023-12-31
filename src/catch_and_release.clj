@@ -12,5 +12,5 @@
   "I don't do a whole lot ... yet."
   [& args]
   ;; start the web stuff
-  (handler/handle)
+  (.start (Thread. (handler/handle)))
   )

@@ -5,8 +5,6 @@
             [ring.adapter.jetty :as jetty]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
-(println "HI")
-
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
@@ -17,5 +15,9 @@
   ;; use #' prefix for REPL-friendly code -- see note below
   (wrap-defaults #'app-routes site-defaults))
 
+(println "HI")
+
 (defn handle []
-  (jetty/run-jetty #'app {:port 3000}))
+  (println "handle it, left side")
+  (.start (Thread. (jetty/run-jetty #'app {:port 3000})))
+  (println "this should have backgrounded"))
